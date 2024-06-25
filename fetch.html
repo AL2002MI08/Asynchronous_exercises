@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pikachu data</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <input
+      type="text"
+      placeholder="Enter pokemon name..."
+      id="poke"
+      class="ring-black ring-2 rounded-lg p-3"
+    />
+    <button
+      onclick="fetchData()"
+      class="rounded-full border border-green-400 px-4 py-2"
+    >
+      Submit
+    </button>
+    <img src="" alt="pokemonSprite" class="hidden" id="pokemonSprite" />
+    <script>
+      //using promise then
+      // const data = fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
+      // data
+      // .then(response => {
+      //     if(!response.ok){
+      //     throw new Error('could not find data')
+      // }else {
+      //    return response.json()
+      // }
+      // })
+      // .then(res => console.log(res))
+      // .catch(err => console.error(err))
+      fetchData();
+      async function fetchData() {
+        let pokeMon = document.getElementById("poke").value.toLowerCase();
+        const response = await fetch(
+          `https://pokeapi.co/api/v2/pokemon/${pokeMon}`
+        );
+        try {
+          if (!response.ok) {
+            throw new Error("data not found");
+          }
+          const data = await response.json();
+          console.log(data)
+        const pokemonSpr = data.sprites.front_default
+        const imgEle = document.getElementById('pokemonSprite')
+        imgEle.src = pokemonSpr
+        imgEle.style.display = 'block'
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    </script>
+  </body>
+</html>

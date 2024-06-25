@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background color</title>
+</head>
+<body>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure rem nulla sapiente ratione porro aliquam voluptas! Incidunt asperiores voluptatum ab vero obcaecati. Laboriosam quos neque ipsum earum, debitis facilis aperiam.</p>
+    <script>
+        let bodyElement = document.querySelector('body')
+        setInterval(()=> {
+        let colors = ['red', 'blue', 'yellow']
+        // bodyElement.style.backgroundColor = colors[Math.floor(Math.random() * (colors.length))]
+        bodyElement.style.backgroundColor = `rgb(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)} , ${Math.floor(Math.random() * 256)})`
+        },2000)
+    </script>
+</body>
+</html>

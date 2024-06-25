@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+<body>
+    <div class="mt-4 py-6 mx-8">
+        <form action="">
+            <input type="text" name="country" class="ring-2 p-2 ring-black outline-none rounded-lg mx-4" placeholder="Enter country name..."/>
+            <button class="text-purple-400 rounded-full border border-purple-400 px-10">Submit</button>
+        </form>
+        <div class="data">
+
+        </div>
+    </div>
+    <script>
+        const form = document.querySelector('form')
+        const dataContainer = document.querySelector('.data')
+
+        form.addEventListener('submit', async (e)=>{
+            e.preventDefault()
+            // const data = await fetch(`https://restcountries.com/v3.1/name/${form['country'].value}`)
+            // const response = await data.json()
+            // if(response.status == 404){
+            //     dataContainer.innerHTML = `<p>Data Not Found</p>`
+            // }else{
+            //     const latLong = response[0].latlng
+            //     const source = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latLong[0]}&longitude=${latLong[1]}&current_weather=true`)
+            //     const res = await source.json()
+            //     const sol = res.current_weather.temperature
+            //     dataContainer.innerHTML = `<p>Country: ${response[0].name.common}</p>
+            //     <p>Capital: ${response[0].capital[0]}</p>
+            //     <p>Temperature:${sol}</p>
+            //     `
+            // }
+            const data = await fetch(`https://restcountries.com/v3.1/name/${form['country'].value}`).then(async (el)=>{
+                try{
+                    if(el.status == 404) throw new Error('Country Not Found')
+                        const response = await el.json()
+                        const latLong = response[0].latlng
+                        const source = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latLong[0]}&longitude=${latLong[1]}&current_weather=true`)
+                        const res = await source.json()
+                        const sol = res.current_weather.temperature
+                    dataContainer.innerHTML = `<p>Country: ${response[0].name.common}</p>
+                    <p>Capital: ${response[0].capital[0]}</p>
+                    <p>Temperature:${sol}</p>
+                `
+                }catch(error){
+                    dataContainer.innerHTML = `<p>${error.message}</p>`
+                }
+            })
+        })
+    </script>
+</body>
+</html>
