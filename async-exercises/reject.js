@@ -3,8 +3,8 @@
 //     console.log('Error!')
 // },2000))
 // reject.catch(err => console.log(err))
-const reject = new Promise((resolve,reject) =>{
-    setTimeout(()=> resolve('Error!'),2000)
+const reject = new Promise((reject) =>{
+    setTimeout(()=> reject('Error!'),2000)
 })
 reject
 .then((res)=> console.log(res))
