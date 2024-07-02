@@ -13,9 +13,9 @@ async function fetchApiData(url, retries){
         }
         console.error(error)
     }
-    console.log(retries)
+    // console.log(retries)
 }
-fetchApiData("https://jsonplaceholder.typic8de.com/posts", 3)
+fetchApiData("https://jsonplaceholder.typicde.com/posts", 3)
 
 
 

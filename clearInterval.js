@@ -6,9 +6,9 @@ function repeat_Function(fn, interval) {
       console.log('Execution stopped.');
     };
   }
-  const stopExecution = repeat_Function(function display(){
+  const stop = repeat_Function(function display(){
     console.log('hello')
   }, 1000)
   setTimeout(()=>{
-    stopExecution()
+    stop()
   },4000)

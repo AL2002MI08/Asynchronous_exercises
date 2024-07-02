@@ -14,6 +14,7 @@ async function fetchDataWithRetry(url, maxRetries) {
         retries++;
         console.log(`Request failed. Retrying (${retries}/${maxRetries})...`);
         if (retries >= maxRetries) {
+          fetchDataWithRetry(url, maxRetries)
           console.log('Error:');
           throw new Error(`Failed after ${maxRetries} retries. Error: ${error.message}`);
         }

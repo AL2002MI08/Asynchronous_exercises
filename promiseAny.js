@@ -1,4 +1,4 @@
-const promise1 = Promise.reject("Error in promise 1");
+const promise1 = Promise.resolve("Error in promise 1");
 const promise2 = Promise.reject("Error in promise 2");
 const promise3 = Promise.reject("Error in promise 3");
 
